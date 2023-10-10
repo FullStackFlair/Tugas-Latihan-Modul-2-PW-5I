@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULIR PENDAFTARAN</title>
+    <style>
+        body{
+            background-color: #3085C3;
+        }
+
+        .container{
+            background-color: white;
+        }
+
+        .form-group {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .popup-content {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulir Pendaftaran</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="alamat">Alamat:</label>
+                <input type="text" id="alamat" name="alamat" required>
+            </div>
+            <button type="button" id="daftarBtn">Daftar</button>
+        </form>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <p id="popupText"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("daftarBtn").addEventListener("click", function() {
+            var nama = document.getElementById("nama").value;
+            var email = document.getElementById("email").value;
+            var alamat = document.getElementById("alamat").value;
+
+            if (nama === "",  email === "",  alamat === "") {
+                displayPopup("Anda harus mengisi data dengan lengkap !");
+            } else {
+                displayPopup("Data berhasil didaftarkan");
+                // Reset form
+                document.getElementById("registrationForm").reset();
+            }
+        });
+
+        document.getElementById("closePopup").addEventListener("click", function() {
+            closePopup();
+        });
+
+        function displayPopup(message) {
+            var popup = document.getElementById("popup");
+            var popupText = document.getElementById("popupText");
+            popup.style.display = "block";
+            popupText.textContent = message;
+        }
+
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
